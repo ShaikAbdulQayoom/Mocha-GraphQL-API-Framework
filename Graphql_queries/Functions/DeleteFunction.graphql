@@ -1,0 +1,3 @@
+mutation deleteFunction($functionid: ID!) {
+  deleteFunction(functionid: $functionid)
+}

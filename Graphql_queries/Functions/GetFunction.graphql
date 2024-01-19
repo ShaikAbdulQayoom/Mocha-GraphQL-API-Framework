@@ -1,0 +1,234 @@
+fragment assessment_term_fields on AssessmentTerm {
+  is_specify_for_rejection
+  seq
+  __typename
+}
+
+fragment questioninstance_termlabel_fields on QuestionInstanceTermLabel {
+  in_answer_list
+  is_exclusive
+  seq
+  __typename
+}
+
+fragment pageitem_termlabel_fields on PageItemTermLabel {
+  in_answer_list
+  seq
+  __typename
+}
+
+fragment termtext_fields on TermText {
+  label
+  languageid
+  termlabelid
+  termtextid
+  __typename
+}
+
+fragment termlabel_fields on TermLabel {
+  termlabelid
+  is_default
+  termid
+  term {
+    value
+    __typename
+  }
+  termtexts {
+    ...termtext_fields
+    __typename
+  }
+  questioninstance_termlabel {
+    ...questioninstance_termlabel_fields
+    __typename
+  }
+  pageitem_termlabel {
+    ...pageitem_termlabel_fields
+    __typename
+  }
+  __typename
+}
+
+fragment visit_term_fields on VisitTerm {
+  is_free_text_reason
+  __typename
+}
+
+fragment term_fields on Term {
+  assessment_term {
+    ...assessment_term_fields
+    __typename
+  }
+  codelistid
+  cdisc_code
+  in_answer_list
+  is_exclusive
+  is_standard
+  label
+  nci_preferred_term
+  termid
+  termlabels {
+    ...termlabel_fields
+    __typename
+  }
+  value
+  visit_term {
+    ...visit_term_fields
+    __typename
+  }
+  __typename
+}
+
+fragment codelist_fields on Codelist {
+  cdisc_code
+  code
+  codelistid
+  createdAt
+  ct_version
+  definition
+  is_extensible
+  is_standard
+  is_numeric_terms_only
+  name
+  nci_preferred_term
+  terms {
+    ...term_fields
+    __typename
+  }
+  updatedAt
+  __typename
+}
+
+fragment function_variable_fields on FunctionVariable {
+  direction
+  functionid
+  seq
+  variableid
+  __typename
+}
+
+fragment importvalidation_variable_fields on ImportValidationVariable {
+  decimal
+  importvalidationid
+  length
+  variableid
+  __typename
+}
+
+fragment variable_fields on Variable {
+  codelist
+  codelistObj {
+    ...codelist_fields
+    __typename
+  }
+  completion_instructions
+  createdAt
+  data_type
+  definition
+  domainid
+  function_variable {
+    ...function_variable_fields
+    __typename
+  }
+  implementation_notes
+  importvalidation_variable {
+    ...importvalidation_variable_fields
+    __typename
+  }
+  is_admin
+  is_category
+  is_cdisc
+  is_occurrence
+  is_phi
+  is_result
+  is_standard
+  is_topic
+  is_unblinding
+  label
+  mapping_instructions
+  name
+  prompt
+  question_text
+  seq
+  updatedAt
+  variableid
+  __typename
+}
+
+fragment domain_fields on Domain {
+  cdash_version
+  code
+  createdAt
+  description
+  domainid
+  is_cdisc
+  is_singleton
+  is_standard
+  name
+  obsrv_class
+  reference_domainid
+  updatedAt
+  variables {
+    ...variable_fields
+    __typename
+  }
+  __typename
+}
+
+fragment parameter_fields on Parameter {
+  description
+  functionid
+  name
+  parameterid
+  seq
+  type
+  __typename
+}
+
+fragment function_fields on Function {
+  buildid
+  description
+  functionid
+  link_via
+  linking_expression
+  linking_expression_parsed
+  linking_expression_readable
+  name
+  orderings {
+    ...variable_fields
+    __typename
+  }
+  parameters {
+    ...parameter_fields
+    __typename
+  }
+  primary_conditions
+  primary_conditions_parsed
+  primary_conditions_readable
+  primary_domain {
+    ...domain_fields
+    __typename
+  }
+  primary_domainid
+  return_type
+  secondary_conditions
+  secondary_conditions_parsed
+  secondary_conditions_readable
+  secondary_domain {
+    ...domain_fields
+    __typename
+  }
+  secondary_domainid
+  variable {
+    ...variable_fields
+    __typename
+  }
+  variableid
+  __typename
+}
+
+query functions($buildid: ID!) {
+  functions(buildid: $buildid) {
+    ...function_fields
+    __typename
+  }
+}

@@ -1,0 +1,3 @@
+mutation updateFunction($functionid: ID!, $inputFunction: FunctionInput!) {
+  updateFunction(functionid: $functionid, input: $inputFunction)
+}

@@ -1,0 +1,6 @@
+query ctversions {
+        ctversions {
+          ct_version
+          __typename
+        }
+      }

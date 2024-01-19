@@ -1,0 +1,49 @@
+{
+    "inputFunction": {
+      "buildid": "590ded02-f99a-431e-bbc8-30d52e5a3539",
+      "name": "12745",
+      "description": "Test Function APIs",
+      "primary_domainid": "56d21184-3660-4a07-acf4-6675b37705bd",
+      "variableid": "06832519-933b-4607-b0f4-ba1495c53325",
+      "return_type": "Numeric",
+      "parameters": [],
+      "link_via": null,
+      "secondary_domainid": null,
+      "linking_expression": null,
+      "linking_expression_parsed": null,
+      "linking_expression_readable": null,
+      "primary_conditions": {
+        "and": [
+          {
+            "<=": [
+              {
+                "number_parse": {
+                  "var": "SINGLETON#DM.BMI"
+                }
+              },
+              {
+                "number_parse": 30
+              }
+            ]
+          }
+        ]
+      },
+      "primary_conditions_parsed": {
+        "and": [
+          {
+            "<=": [
+              {
+                "var": "SINGLETON#DM.BMI#NUMBER"
+              },
+              30
+            ]
+          }
+        ]
+      },
+      "primary_conditions_readable": "DM.BMI <= 30",
+      "secondary_conditions": null,
+      "secondary_conditions_parsed": null,
+      "secondary_conditions_readable": null,
+      "orderings": []
+    }
+  }
